@@ -1,0 +1,24 @@
+<html>
+<body>
+    <div id="seeds"></div>
+</body>
+<script>
+    function getSeeds() {
+        fetch('/update')
+          .then((response) => {
+            return response.json();
+          })
+          .then((seeds) => {
+            // do something with the data
+            console.log(seeds);
+            let towersContainer = document.getElementById("seeds");
+            towersContainer.innerHTML = JSON.stringify(seeds);
+          });
+    }
+    // call the method getTowers once to get initial data.
+    getSeeds();
+
+    // call the method getTowers every second. So that the data will be updated.
+    setInterval(getSeeds, 1000);
+</script>
+</html>
